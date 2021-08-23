@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<robot name="uuv" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find uuv_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find uuv_description)/urdf/uuv.trans" />
+<xacro:include filename="$(find uuv_description)/urdf/uuv.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.09000000503232272 -0.010796178359497892 -1.0333234364006292e-09"/>
+    <mass value="166.4624626309523"/>
+    <inertia ixx="3.665512" ixy="-0.0" ixz="0.0" iyy="1.315964" iyz="-0.0" izz="3.173539"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caudal_fin_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-2.7755575615628914e-17 0.05540023346102746 3.083057364960951e-11"/>
+    <mass value="2.679046633373485"/>
+    <inertia ixx="0.00546" ixy="-0.0" ixz="-0.0" iyy="0.003602" iyz="0.0" izz="0.002234"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.09 -0.250554 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/caudal_fin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.09 -0.250554 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/caudal_fin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="fin_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.04000000000000001 5.282692747909934e-05 -2.993027377205859e-05"/>
+    <mass value="0.125915999373811"/>
+    <inertia ixx="7e-06" ixy="0.0" ixz="-0.0" iyy="6.8e-05" iyz="-0.0" izz="7.4e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.185 0.175 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/fin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.185 0.175 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/fin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="fin_2">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.04 5.282692747904383e-05 -2.993027377205859e-05"/>
+    <mass value="0.125915999373811"/>
+    <inertia ixx="7e-06" ixy="-0.0" ixz="-0.0" iyy="6.8e-05" iyz="-0.0" izz="7.4e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.005 0.175 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/fin_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.005 0.175 -0.0"/>
+    <geometry>
+      <mesh filename="package://uuv_description/meshes/fin_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid1" type="fixed">
+  <origin rpy="0 0 0" xyz="0.09 0.250554 0.0"/>
+  <parent link="base_link"/>
+  <child link="caudal_fin_1"/>
+</joint>
+
+<joint name="Rigid2" type="fixed">
+  <origin rpy="0 0 0" xyz="0.185 -0.175 0.0"/>
+  <parent link="base_link"/>
+  <child link="fin_1"/>
+</joint>
+
+<joint name="Rigid3" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.005 -0.175 0.0"/>
+  <parent link="base_link"/>
+  <child link="fin_2"/>
+</joint>
+
+</robot>
